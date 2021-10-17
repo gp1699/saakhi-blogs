@@ -21,15 +21,11 @@ jobs:
           path: sikhsaakhi.com
           token: ${{ secrets.SAAKHI_REPO_TOKEN }}
           submodules: 'recursive'
-      - name: setup git config
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-        env:
-          GITHUB_TOKEN: ${{ secrets.SAAKHI_REPO_TOKEN }}
       - name: Pull latest submodules and push
         run: |
           cd sikhsaakhi.com
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
           git submodule foreach git pull origin main
           git add .
           git commit -m "use latest https://github.com/gp1699/saakhi-blogs"
