@@ -30,7 +30,7 @@ jobs:
       - name: Pull latest submodules and push
         run: |
           cd sikhsaakhi.com
-          git submodule foreach git pull 
+          git submodule foreach git pull origin main
           git add .
           git commit -m "use latest https://github.com/gp1699/saakhi-blogs"
           git push -u origin main
