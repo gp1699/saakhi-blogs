@@ -11,6 +11,29 @@ jobs:
         uses: amitojsingh366/saakhi-blog-action@v1.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          # request-url: ${{ secrets.REQUEST_URL }}
-          # authorization-secret: ${{ secrets.AUTHORIZATION_SECRET }}
+          request-url: ${{ secrets.REQUEST_URL }}
+          authorization-secret: ${{ secrets.AUTHORIZATION_SECRET }}
+      - name: Checkout saakhi website
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          repository: amitojsingh366/sikhsaakhi.com
+          path: sikhsaakhi.com
+          token: ${{ secrets.SAAKHI_REPO_TOKEN }}
+          submodules: 'recursive'
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.SAAKHI_REPO_TOKEN }}
+      - name: Pull latest submodules and push
+        run: |
+          cd sikhsaakhi.com
+          git submodule foreach git pull 
+          git add .
+          git commit -m "use latest https://github.com/gp1699/saakhi-blogs"
+          git push -u origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.SAAKHI_REPO_TOKEN }}
           
