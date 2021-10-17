@@ -8,7 +8,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Run Deployment Script
-        uses: amitojsingh366/saakhi-blog-action@v1.0.0-pre
+        uses: amitojsingh366/saakhi-blog-action@v1.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # request-url: ${{ secrets.REQUEST_URL }}
