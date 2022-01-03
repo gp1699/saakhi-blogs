@@ -17,6 +17,7 @@ jobs:
         run: |
           cd sikhsaakhi.com
           git config user.name "GitHub Actions Bot"
+          
           git config user.email "<>"
           git submodule foreach git pull origin main
           git add .
